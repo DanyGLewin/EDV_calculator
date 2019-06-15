@@ -135,9 +135,9 @@ def main():
             print edv
             first = False
             cont = go()
-        except KeyboardInterrupt:
-            exit()
-        except Exception:
+        except KeyError:
+            break
+        except ValueError:
             print "\nWhoops, something went wrong. Let's go again from the top."
             continue
 
