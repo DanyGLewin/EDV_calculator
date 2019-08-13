@@ -1,4 +1,5 @@
 from tkinter import *
+
 import attack
 import total
 
@@ -25,18 +26,15 @@ class Window(Frame):
         edit.add_command(label="Remove attack", command=self.attacks.remove_attack)
         menu.add_cascade(label="Edit", menu=edit)
 
-
         self.total = total.Total(self, 1)
         self.total.grid(row=1)
 
         self.attacks.grid(row=0)
         self.attacks.add_attack()
 
-
     def client_exit(self):
         self.master.destroy()
-
-
+        exit()
 
 
 class AttacksFrame(Frame):
@@ -44,7 +42,6 @@ class AttacksFrame(Frame):
         Frame.__init__(self, master)
         self.master = master
         self.attacks = []
-
 
     def add_attack(self):
         self.attacks.append(attack.Attack(self))
@@ -70,9 +67,5 @@ class AttacksFrame(Frame):
 root = Tk()
 
 main_window = Window(root)
-
-
-
-
 
 root.mainloop()
