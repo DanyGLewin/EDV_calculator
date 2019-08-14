@@ -1,5 +1,6 @@
-from roll import Roll
 from PyInquirer import prompt
+
+from roll import Roll
 
 
 def is_num(string):
@@ -74,7 +75,6 @@ def calculate_damage(ac, attack, base_damage, crit_damage, crit_range=0.05, **kw
     return (chance * base_damage) + (crit_range * crit_damage)
 
 
-
 def process(answers):
     edv = calculate_damage(**answers)
     # if answers['system'] == '5e':
@@ -112,7 +112,6 @@ def main():
         try:
             answers = get_input()
             edv = process(answers)
-            print(edv)
             first = False
             cont = go()
         except KeyError:

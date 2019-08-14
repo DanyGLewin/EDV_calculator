@@ -1,5 +1,7 @@
-import utils
 from tkinter import *
+
+import utils
+
 
 class Total(Frame):
     def __init__(self, master, length):

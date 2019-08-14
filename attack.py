@@ -1,15 +1,15 @@
 from tkinter import *
-import utils
-import roll
+
 import calc
-import total
+import roll
+import utils
 
 
 class Attack(Frame):
     def __init__(self, master):
         Frame.__init__(self, master=None, borderwidth=2)
         self.master = master
-        self.label_strings=[]
+        self.label_strings = []
         self.labels = []
 
         self.ac = StringVar()
@@ -78,7 +78,7 @@ class Attack(Frame):
                 crit_chance = int(crit_chance_string) / 100.
 
             attack_string = self.attack.get()
-            attack_list = roll.split_bonuses(attack_string)
+            attack_list = roll.get_attack_bonuses(attack_string)
 
             damage_string = self.base_damage.get()
             damage_roll = roll.Roll(damage_string)

@@ -1,5 +1,6 @@
 import re
 from random import randint
+
 import utils
 
 
@@ -40,8 +41,8 @@ class Roll:
     def __init__(self, roll_string):
         string_copy = roll_string
         for i in string_copy:
-            if i not in ['0123456789d+-']:
-                roll_string.replace(i, '')
+            if i not in '0123456789d+-':
+                roll_string = roll_string.replace(i, '')
 
         if 'd' in roll_string:
             dice_strings, modifier_strings = self.split_roll(roll_string)
@@ -94,14 +95,14 @@ def split_bonuses(bonus_string):
     matches = re.findall(utils.BONUS_PATTERN, bonus_string)
     matches = utils.concat_lists(matches)
     matches = utils.remove_nulls(matches)
-
     out = [int(attack) for attack in matches]
     return out
+
 
 def get_attack_bonuses(attack_string):
     string_copy = attack_string
     for i in string_copy:
-        if i not in '0123456789d+-':
-            attack_string.replace('i', '')
+        if i not in '0123456789/+-':
+            attack_string = attack_string.replace(i, '')
     attack_bonus_list = split_bonuses(attack_string)
     return attack_bonus_list
