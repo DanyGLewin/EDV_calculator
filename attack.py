@@ -68,14 +68,20 @@ class Attack(Frame):
             ac = int(self.ac.get())
 
             crit_chance_string = self.crit_chance.get()
-
+            crit_chance = 0.05
             if len(crit_chance_string) and crit_chance_string[-1] == '%':
                 crit_chance_string = crit_chance_string[:-1]
 
-            if int(crit_chance_string) != float(crit_chance_string):
-                crit_chance = float(crit_chance_string)
-            else:
-                crit_chance = int(crit_chance_string) / 100.
+            try:
+                crit_chance = int(crit_chance_string)
+                crit_chance = float(crit_chance) / 100
+            except ValueError:
+                if '.' in crit_chance_string:
+                    crit_chance = float(crit_chance_string)
+                elif '-20' in crit_chance_string:
+                    lower_bound = int(crit_chance_string.split('-')[0])
+                    crit_chance = 0.05 * (21-lower_bound)
+
 
             attack_string = self.attack.get()
             attack_list = roll.get_attack_bonuses(attack_string)
