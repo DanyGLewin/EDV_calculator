@@ -26,6 +26,9 @@ class Window(Frame):
         edit.add_command(label="Remove attack", command=self.attacks.remove_attack)
         menu.add_cascade(label="Edit", menu=edit)
 
+        self.master.bind("<Shift-Up>", self.attacks.add_attack)
+        self.master.bind("<Shift-Down>", self.attacks.remove_attack)
+
         self.total = total.Total(self, 1)
         self.total.grid(row=1)
 
@@ -43,7 +46,7 @@ class AttacksFrame(Frame):
         self.master = master
         self.attacks = []
 
-    def add_attack(self):
+    def add_attack(self, *args):
         self.attacks.append(attack.Attack(self))
         self.attacks[-1].grid(row=0, column=len(self.attacks) - 1)
 
@@ -52,7 +55,7 @@ class AttacksFrame(Frame):
         self.master.total = total.Total(self.master, length=len(self.attacks))
         self.master.total.grid(row=1)
 
-    def remove_attack(self):
+    def remove_attack(self, *args):
         if len(self.attacks) == 1:
             return
         target = self.attacks.pop()
