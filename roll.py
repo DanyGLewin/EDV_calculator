@@ -41,7 +41,7 @@ class Roll:
     def __init__(self, roll_string):
         string_copy = roll_string
         for i in string_copy:
-            if i not in '0123456789d+-':
+            if i not in '0123456789d+-.':
                 roll_string = roll_string.replace(i, '')
 
         if 'd' in roll_string:
@@ -50,7 +50,7 @@ class Roll:
             self.modifier = sum([int(mod_string) for mod_string in modifier_strings])
         else:
             self.dice = []
-            self.modifier = int(roll_string)
+            self.modifier = float(roll_string)
 
     @staticmethod
     def split_roll(roll_str):

@@ -1,4 +1,4 @@
-from PyInquirer import prompt
+# from PyInquirer import prompt
 
 from roll import Roll
 
@@ -66,7 +66,7 @@ def get_input():
 
 
 def calculate_damage(ac, attack, base_damage, crit_damage, crit_range=0.05, **kwargs):
-    chance = 1 - ((ac + 1 - attack) / 20.)
+    chance = 1 - ((ac - 1 - attack) / 20.)
     chance -= crit_range
     if chance < 0:
         chance = 0
